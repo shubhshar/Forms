@@ -1,5 +1,5 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const initValues = {
@@ -10,22 +10,49 @@ export default function App() {
   };
 
   const [register, setRegister] = useState(initValues);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [formErrors, setformErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegister({ ...register, [name]: value });
+    const { name, value } = e.target; //to access value from inputfield(array destruct)
+    setRegister({ ...register, [name]: value }); // keep on adding data to register array
+  };
+  const validate = (values) => {
+    const error = {};
+
+    if (!values.firstName) {
+      error.firstName = " First name required";
+    }
+    if (!values.lastname) {
+      error.lastname = "Last name required";
+    }
+    if (!values.email) {
+      error.email = "Email is required";
+    }
+    if (!values.mobNumber) {
+      error.mobNumber = "Mobile number is required";
+    }
+    return error;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setRegister({ ...register });
     console.log(register);
+    setRegister({ ...register }); //to show next data
     setRegister({ firstName: "", lastname: "", email: "", mobNumber: "" });
+    setformErrors(validate(register));
+    setIsSubmit(true);
+    //window.location.reload();
   };
+
   return (
     <div className="App">
       <div className="container">
         <div className="displayonDom">
-          <pre>{JSON.stringify(register, undefined, 2)}</pre>
+          {Object.keys(formErrors).length === 0 && isSubmit ? (
+            <div className="ui message success">Signed in successfully</div>
+          ) : (
+            <pre>{JSON.stringify(register, undefined, 2)}</pre>
+          )}
         </div>
         <form onSubmit={handleSubmit}>
           <div className="content">
@@ -39,6 +66,7 @@ export default function App() {
                 onChange={handleChange}
               />
             </div>
+            <div className="p">{formErrors.firstName}</div>
             <div className="inputFields">
               <label>Last name</label>
               <input
@@ -49,6 +77,7 @@ export default function App() {
                 onChange={handleChange}
               />
             </div>
+            <div className="p">{formErrors.lastname}</div>
             <div className="inputFields">
               <label>Email </label>
               <input
@@ -59,6 +88,7 @@ export default function App() {
                 onChange={handleChange}
               />
             </div>
+            <div className="p">{formErrors.email}</div>
             <div className="inputFields">
               <label>Phone</label>
               <input
@@ -69,6 +99,7 @@ export default function App() {
                 onChange={handleChange}
               />
             </div>
+            <div className="p">{formErrors.mobNumber}</div>
           </div>
           <button>Submit</button>
         </form>
