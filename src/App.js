@@ -24,7 +24,9 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="displayonDom"></div>
+        <div className="displayonDom">
+          <pre>{JSON.stringify(register, undefined, 2)}</pre>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="content">
             <div className="inputFields">
