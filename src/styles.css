@@ -10,6 +10,14 @@
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
+.displayonDom {
+  width: 20%;
+  margin-left: 33%;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
 .inputFields {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
@@ -19,6 +27,7 @@ label {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
+  padding-top: 10px;
 }
 input {
   height: 45px;
@@ -35,6 +44,7 @@ button {
   height: 100%;
   width: 20%;
   padding: 10px 0 10px 0;
+  margin-right: 10%;
   border-radius: 5px;
   border: none;
   color: #fff;
