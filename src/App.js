@@ -15,7 +15,7 @@ export default function App() {
 
   const handleChange = (e) => {
     const { name, value } = e.target; //to access value from inputfield(array destruct)
-    setRegister({ ...register, [name]: value }); // keep on adding data to register array
+    setRegister({ ...register, [name]: value }); // keep on adding data to register object
   };
   const validate = (values) => {
     const error = {};
