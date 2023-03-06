@@ -19,7 +19,7 @@ export default function App() {
   };
   const validate = (values) => {
     const error = {};
-
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.firstName) {
       error.firstName = " First name required";
     }
@@ -28,6 +28,8 @@ export default function App() {
     }
     if (!values.email) {
       error.email = "Email is required";
+    } else if (!regex.test(values.email)) {
+      error.email = "Unvalid email format";
     }
     if (!values.mobNumber) {
       error.mobNumber = "Mobile number is required";
@@ -43,7 +45,6 @@ export default function App() {
     setIsSubmit(true);
     //window.location.reload();
   };
-
   return (
     <div className="App">
       <div className="container">
