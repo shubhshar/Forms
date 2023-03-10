@@ -14,7 +14,7 @@ export default function App() {
   const [formErrors, setformErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target; //to access value from inputfield(array destruct)
+    const { name, value } = e.target; //to access value from inputfield(array destructuring)
     setRegister({ ...register, [name]: value }); // keep on adding data to register object
   };
   const validate = (values) => {
